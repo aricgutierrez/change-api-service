@@ -15,7 +15,6 @@ export class UseToken {
         const send: IInputControllerSave = {
             correo: info.correo, curriculum: [], nombre: info.nombre, use: true, date: info.date
         };
-        console.log(JSON.stringify(info));
         info.curriculum.forEach( (curriculum: any) => {
             send.curriculum.push({ text: curriculum.text, frecuency: curriculum.frecuency });
             if (! curriculum.hasOwnProperty('report') ) { curriculum['report'] = []; }
@@ -24,8 +23,6 @@ export class UseToken {
                 curriculum.report.push( DateUtilities.getNow() );
             }
         });
-        console.log('info' + JSON.stringify(info));
-        console.log('send' + JSON.stringify(send));
         await DBFirebaseService.setDocument( Collections.CURRICULUM , send , params.token);
         const response = await this.service.startProcess(info , false , SecureUtilitiesService.generate());
         return response

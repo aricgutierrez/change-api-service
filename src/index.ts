@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import path from 'path';
 import { moduleControllers } from './configurations/module.controller';
 import listEndpoints from 'express-list-endpoints';
@@ -38,7 +39,18 @@ class Server{
 
     private static commonsServer(): void {
         Server.application.use(express.json());
+        Server.application.use(cors(
+            { 
+                origin: '*',
+                methods: ['GET','POST','PUT']
+            }));
         Server.application.use(express.urlencoded({ extended: true }));
+        Server.application.get('/' , (_req: Request , _res: Response) => {
+            _res.sendStatus(200).json({
+                status: 'runner',
+                code: 200
+            })
+        });
     }
 
     private static listen(): void {
