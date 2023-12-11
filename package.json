@@ -6,8 +6,9 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "copyMySpecialFiles": "copyfiles --error --up 1 ./src/templates/*.* dist",
-    "postbuild": "npm run copyMySpecialFiles",
+    "copyTemplate": "copyfiles --error --up 1 ./src/templates/*.* dist",
+    "copyVercel": "copyfiles --error --up 1 ./vercel.json dist",
+    "postbuild": "npm run copyTemplate && npm run copyVercel",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "author": "tecnologia change",
