@@ -15,7 +15,7 @@ class Server{
     private static application: Express | any = express();
     private static readonly port = process.env.PORT;
 
-    public static start(): void {
+    public static start(): Express {
         Server.commonsServer();
         moduleControllers.forEach( controller => {
             Server.application[controller.method]( controller.path , (_req: Request , _res: Response) => {
