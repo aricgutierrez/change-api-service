@@ -34,7 +34,7 @@ class Server{
                 });
             });
         });
-        Server.listen();
+        return Server.listen();
     }
 
     private static commonsServer(): void {
@@ -53,7 +53,7 @@ class Server{
         });
     }
 
-    private static listen(): void {
+    private static listen(): Express {
         Server.application.listen( Server.port , () => {
             let paths = '';
             listEndpoints(Server.application).forEach( list => {
@@ -62,7 +62,8 @@ class Server{
             console.log(`${paths}`);
             console.log(`⚡️[server]: Server is running at http://localhost:${Server.port}`);
         });
+        return Server.application;
     }
 }
 
-Server.start();
+module.exports = Server.start();
