@@ -26,7 +26,6 @@ export class Sendservice {
       html: TemplateUtilitiesService.replaceParams(data , email.body)
     };
     return new Promise((success, fail) => {
-      // success(mailOptions)
       Sendservice.path().sendMail(mailOptions, function (error, info: any) {
         if (error) {
           fail(error);
