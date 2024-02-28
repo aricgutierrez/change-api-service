@@ -46,10 +46,10 @@ export class ResumeFollowUp{
         let body = { 
             nombre: params.nombre, 
             curriculum: '' , 
-            secure: `${Domain.test.domain}?curriculum=${secure}` 
+            secure: `${Domain.test.domain}${secure}` 
         };
         params.curriculum.forEach ( item => {
-            body.curriculum +=`<span>${item.text}</span><br><span>${item.frecuency}</span>`
+            body.curriculum +=`<div class="table"><span>${item.text}</span><span>${item.frecuency}</span></div>`
         });
         const response = await Sendservice.run( params.correo , { subject: 'Tu Curriculum', body } , ResumeFollowUp.TEMPLATE);
         return response;

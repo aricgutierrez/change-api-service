@@ -46,10 +46,10 @@ class Server{
             }));
         Server.application.use(express.urlencoded({ extended: true }));
         Server.application.get('/' , (_req: Request , _res: Response) => {
-            _res.sendStatus(200).json({
+            _res.status(200).json({
                 status: 'runner',
                 code: 200
-            })
+            }).send();
         });
     }
 

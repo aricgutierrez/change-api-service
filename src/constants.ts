@@ -11,7 +11,7 @@ export const FirebaseConfig = {
 export const Domain = {
     secure: 'https://www.change.com/',
     test: {
-        domain : 'https://check.vivenua.com/v1/progress'
+        domain : 'http://localhost:4200/report/'
     }
 };
 
